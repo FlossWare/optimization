@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "genetic-optimizer-ai"
+version = "0.1"
+description = "Genetic algorithm optimizer and rule-based task classifier for AI strategy tuning"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.11"
+authors = [
+    { name = "Scot P. Floess", email = "sfloess@users.noreply.github.com" },
+]
+keywords = ["genetic-algorithm", "optimizer", "task-classifier", "ai", "parameter-tuning"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Typing :: Typed",
+]
+
+[project.urls]
+Homepage = "https://github.com/FlossWare/genetic-optimizer-ai"
+Repository = "https://github.com/FlossWare/genetic-optimizer-ai"
+Issues = "https://github.com/FlossWare/genetic-optimizer-ai/issues"
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "ruff", "mypy", "bandit"]
+
+[tool.setuptools.packages.find]
+include = ["genetic_optimizer_ai*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 99
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP"]
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+
+[tool.bandit]
+exclude_dirs = ["tests"]
