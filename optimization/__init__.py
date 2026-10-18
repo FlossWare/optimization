@@ -17,6 +17,8 @@ from optimization.genetic_optimizer import (
     Individual,
     ParamBounds,
 )
+
+
 __all__ = [
     "DEFAULT_PARAMS",
     "GeneticOptimizer",
