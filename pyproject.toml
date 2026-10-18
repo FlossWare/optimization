@@ -5,14 +5,14 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "genetic-optimizer-ai"
 version = "0.1"
-description = "Genetic algorithm optimizer and rule-based task classifier for AI strategy tuning"
+description = "Reusable genetic and evolutionary optimization algorithms"
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.11"
 authors = [
     { name = "Scot P. Floess", email = "sfloess@users.noreply.github.com" },
 ]
-keywords = ["genetic-algorithm", "optimizer", "task-classifier", "ai", "parameter-tuning"]
+keywords = ["genetic-algorithm", "ai", "parameter-tuning"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
@@ -27,9 +27,9 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/FlossWare/genetic-optimizer-ai"
-Repository = "https://github.com/FlossWare/genetic-optimizer-ai"
-Issues = "https://github.com/FlossWare/genetic-optimizer-ai/issues"
+Homepage = "https://github.com/FlossWare/optimization"
+Repository = "https://github.com/FlossWare/optimization"
+Issues = "https://github.com/FlossWare/optimization/issues"
 
 [project.optional-dependencies]
 dev = ["pytest>=8.0", "ruff", "mypy", "bandit"]
