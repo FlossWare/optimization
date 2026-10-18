@@ -1,175 +1,45 @@
 # optimization Integration Guide
 
-Install:
+Install from the repository:
+
 ```bash
 pip install "git+https://github.com/FlossWare/optimization.git"
 ```
 
----
+## Python usage
 
-## Claude Code
-
-### CLAUDE.md snippet
-
-```markdown
-## Optimization (optimization)
-
-This project uses `optimization` to evolve parameters via genetic algorithm
-and classify tasks into execution blueprints.
+The package exposes a genetic algorithm and an explicit `@optimize` decorator. The caller supplies a fitness function; optimization does not invoke models, classify tasks, or orchestrate workflows.
 
 ```python
-from optimization import optimize, GeneticOptimizer, RuleBasedTaskClassifier
+from optimization import GeneticOptimizer, Individual, ParamBounds, optimize
 
-@optimize(
-    bounds={"temperature": (0.0, 2.0), "top_p": (0.0, 1.0)},
-    generations=50, population=30,
-)
-def fitness(temperature: float, top_p: float) -> float:
-    # Return higher = better
-    return score_from_experiment(temperature, top_p)
-```
-```
+bounds = [
+    ParamBounds("temperature", 0.0, 2.0),
+    ParamBounds("top_p", 0.0, 1.0),
+]
 
-### Skills
+optimizer = GeneticOptimizer(params=bounds, seed=7)
 
-Create `.claude/skills/optimize-params.md`:
-```markdown
----
-name: optimize-params
-description: Run a genetic algorithm to find optimal parameters
----
+def fitness(candidate: Individual) -> float:
+    # Replace with a deterministic, caller-owned objective.
+    return -(candidate.genes["temperature"] - 0.5) ** 2
 
-Use optimization's GeneticOptimizer to evolve parameters.
-Define bounds, fitness function, then run for N generations.
-Report the best individual and its fitness score.
+best = optimizer.evolve(fitness, generations=20)
+print(best.genes)
+
+@optimize(param_bounds={"temperature": (0.0, 2.0)}, seed=7)
+def score(temperature: float) -> float:
+    return -(temperature - 0.5) ** 2
+
+result = score()
+print(result.best_params, result.fitness)
 ```
 
----
+## Boundary
 
-## OpenAI Codex
+- `optimization` owns reusable optimization algorithms.
+- `strategy` owns decision-selection algorithms.
+- `evaluation` assesses outcomes and evidence.
+- Loom owns execution semantics and orchestration.
 
-### AGENTS.md snippet
-```markdown
-## Parameter Optimization
-
-Use `optimization` for hyperparameter tuning:
-
-```python
-from optimization import optimize, GeneticOptimizer, ParamBounds
-
-@optimize(bounds={"lr": (1e-5, 1e-2), "batch": (8, 128)}, generations=100)
-def fitness(lr: float, batch: float) -> float:
-    return evaluate_model(lr=lr, batch_size=int(batch))
-```
-```
-
----
-
-## Cursor
-
-### .cursorrules snippet
-```
-Use optimization for parameter optimization:
-- @optimize(bounds={...}, generations=N) decorator for simple cases
-- GeneticOptimizer class for full control (custom crossover, mutation rates)
-- RuleBasedTaskClassifier to map task descriptions to execution plans
-
-Import from: from optimization import optimize, GeneticOptimizer, RuleBasedTaskClassifier
-Package: pip install "git+https://github.com/FlossWare/optimization.git"
-Zero dependencies — stdlib only.
-```
-
----
-
-## Crush
-
-### Configuration
-```python
-from crush import Agent
-from optimization import optimize, RuleBasedTaskClassifier
-
-classifier = RuleBasedTaskClassifier()
-
-class OptimizingAgent(Agent):
-    async def plan(self, task: str):
-        blueprint = classifier.classify(task)
-        return blueprint
-
-    @optimize(bounds={"temperature": (0.0, 2.0)}, generations=20)
-    def tune_temperature(self, temperature: float) -> float:
-        return self.evaluate_output_quality(temperature)
-```
-
----
-
-## Generic Python Agent
-
-### Usage patterns
-```python
-from optimization import (
-    GeneticOptimizer, ParamBounds, Individual,
-    RuleBasedTaskClassifier, ExecutionBlueprint,
-    optimize, OptimizeResult,
-)
-
-# 1. Decorator approach — simplest
-@optimize(
-    bounds={"temperature": (0.0, 2.0), "top_p": (0.0, 1.0)},
-    generations=50, population=30,
-)
-def fitness(temperature: float, top_p: float) -> float:
-    return score(temperature, top_p)
-
-result: OptimizeResult = fitness()
-
-# 2. Programmatic approach — full control
-bounds: ParamBounds = {"lr": (1e-5, 1e-2), "dropout": (0.0, 0.5)}
-optimizer = GeneticOptimizer(bounds=bounds, population_size=50)
-
-for gen in range(100):
-    optimizer.step(fitness_fn=my_fitness)
-
-best: Individual = optimizer.best
-print(f"Best params: {best.genes}, fitness: {best.fitness}")
-
-# 3. Task classification
-classifier = RuleBasedTaskClassifier()
-blueprint: ExecutionBlueprint = classifier.classify(
-    "Analyze customer sentiment from support tickets"
-)
-print(f"Strategy: {blueprint.strategy}")
-print(f"Models: {blueprint.recommended_models}")
-```
-
----
-
-## Cross-Package Integration
-
-### With resilience-ai + observability-ai
-```python
-from resilience_ai import with_retry
-from observability_ai import track_execution, ExecutionTelemetry
-from optimization import optimize
-
-telemetry = ExecutionTelemetry()
-
-@optimize(bounds={"temperature": (0.0, 2.0)}, generations=30)
-@with_retry(max_attempts=3)
-@track_execution(telemetry=telemetry, provider="experiment")
-def fitness(temperature: float) -> float:
-    return run_experiment(temperature)
-```
-
-### With consensus-ai
-```python
-from consensus_ai import with_consensus
-from optimization import optimize
-
-@optimize(bounds={"temperature": (0.0, 2.0)}, generations=20)
-async def consensus_fitness(temperature: float) -> float:
-    @with_consensus(models=["gpt-4o", "claude-sonnet", "gemini-flash"])
-    async def evaluate(prompt: str, **kwargs) -> str:
-        ...
-    result = await evaluate(f"Rate quality at temp={temperature}")
-    return float(result.split("/")[0])  # parse "8/10"
-```
+Optimization must not override policy, authorization, safety, feasibility, or budget constraints.
