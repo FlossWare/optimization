@@ -201,9 +201,7 @@ class GeneticOptimizer:
         contestants = self._rng.sample(self.population, self.tournament_size)
         return max(contestants, key=lambda i: i.fitness)
 
-    def _crossover(
-        self, p1: Individual, p2: Individual
-    ) -> tuple[Individual, Individual]:
+    def _crossover(self, p1: Individual, p2: Individual) -> tuple[Individual, Individual]:
         """Uniform crossover: each gene randomly from one parent."""
         c1_genes: dict[str, float] = {}
         c2_genes: dict[str, float] = {}
@@ -256,11 +254,7 @@ class GeneticOptimizer:
         for i in range(n):
             for j in range(i + 1, n):
                 dist = sum(
-                    (
-                        self.population[i].genes[p.name]
-                        - self.population[j].genes[p.name]
-                    )
-                    ** 2
+                    (self.population[i].genes[p.name] - self.population[j].genes[p.name]) ** 2
                     for p in self.params
                 )
                 total += math.sqrt(dist)
