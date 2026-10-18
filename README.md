@@ -29,10 +29,10 @@ Optimization must operate within externally enforced security, authorization, sa
 
 ## Scope
 
-**Implementation mismatch to resolve:** the current `genetic_optimizer_ai` package still exports `RuleBasedTaskClassifier`, `TaskClassifier`, and `ExecutionBlueprint` from `task_classifier.py`. Those symbols can still be imported today, so they must not be described as already removed. They represent legacy task-routing behavior and do not belong in the intended `optimization` boundary. Keep them documented as legacy until a separately reviewed migration removes or relocates them.
+**Implementation mismatch to resolve:** the current `optimization` package still exports `RuleBasedTaskClassifier`, `TaskClassifier`, and `ExecutionBlueprint` from `task_classifier.py`. Those symbols can still be imported today, so they must not be described as already removed. They represent legacy task-routing behavior and do not belong in the intended `optimization` boundary. Keep them documented as legacy until a separately reviewed migration removes or relocates them.
 
 New work should focus on reusable optimization algorithms, explicit contracts, reproducible behavior, and tests. Keep runtime-specific orchestration out of this repository.
 
 ## Naming
 
-The repository is named `optimization`; documentation and repository links use that name. The distribution name `genetic-optimizer-ai` and import package `genetic_optimizer_ai` are legacy identifiers retained pending an explicit compatibility/release decision. Do not infer that they have been renamed merely because the repository has.
+The repository is named `optimization`; documentation and repository links use that name. The distribution is `optimization` and the canonical Python import package is `optimization`.
