@@ -1,8 +1,8 @@
-# genetic-optimizer-ai Integration Guide
+# optimization Integration Guide
 
 Install:
 ```bash
-pip install "git+https://github.com/FlossWare/genetic-optimizer-ai.git"
+pip install "git+https://github.com/FlossWare/optimization.git"
 ```
 
 ---
@@ -12,13 +12,13 @@ pip install "git+https://github.com/FlossWare/genetic-optimizer-ai.git"
 ### CLAUDE.md snippet
 
 ```markdown
-## Optimization (genetic-optimizer-ai)
+## Optimization (optimization)
 
-This project uses `genetic-optimizer-ai` to evolve parameters via genetic algorithm
+This project uses `optimization` to evolve parameters via genetic algorithm
 and classify tasks into execution blueprints.
 
 ```python
-from genetic_optimizer_ai import optimize, GeneticOptimizer, RuleBasedTaskClassifier
+from optimization import optimize, GeneticOptimizer, RuleBasedTaskClassifier
 
 @optimize(
     bounds={"temperature": (0.0, 2.0), "top_p": (0.0, 1.0)},
@@ -39,7 +39,7 @@ name: optimize-params
 description: Run a genetic algorithm to find optimal parameters
 ---
 
-Use genetic-optimizer-ai's GeneticOptimizer to evolve parameters.
+Use optimization's GeneticOptimizer to evolve parameters.
 Define bounds, fitness function, then run for N generations.
 Report the best individual and its fitness score.
 ```
@@ -52,10 +52,10 @@ Report the best individual and its fitness score.
 ```markdown
 ## Parameter Optimization
 
-Use `genetic-optimizer-ai` for hyperparameter tuning:
+Use `optimization` for hyperparameter tuning:
 
 ```python
-from genetic_optimizer_ai import optimize, GeneticOptimizer, ParamBounds
+from optimization import optimize, GeneticOptimizer, ParamBounds
 
 @optimize(bounds={"lr": (1e-5, 1e-2), "batch": (8, 128)}, generations=100)
 def fitness(lr: float, batch: float) -> float:
@@ -69,13 +69,13 @@ def fitness(lr: float, batch: float) -> float:
 
 ### .cursorrules snippet
 ```
-Use genetic-optimizer-ai for parameter optimization:
+Use optimization for parameter optimization:
 - @optimize(bounds={...}, generations=N) decorator for simple cases
 - GeneticOptimizer class for full control (custom crossover, mutation rates)
 - RuleBasedTaskClassifier to map task descriptions to execution plans
 
-Import from: from genetic_optimizer_ai import optimize, GeneticOptimizer, RuleBasedTaskClassifier
-Package: pip install "git+https://github.com/FlossWare/genetic-optimizer-ai.git"
+Import from: from optimization import optimize, GeneticOptimizer, RuleBasedTaskClassifier
+Package: pip install "git+https://github.com/FlossWare/optimization.git"
 Zero dependencies — stdlib only.
 ```
 
@@ -86,7 +86,7 @@ Zero dependencies — stdlib only.
 ### Configuration
 ```python
 from crush import Agent
-from genetic_optimizer_ai import optimize, RuleBasedTaskClassifier
+from optimization import optimize, RuleBasedTaskClassifier
 
 classifier = RuleBasedTaskClassifier()
 
@@ -106,7 +106,7 @@ class OptimizingAgent(Agent):
 
 ### Usage patterns
 ```python
-from genetic_optimizer_ai import (
+from optimization import (
     GeneticOptimizer, ParamBounds, Individual,
     RuleBasedTaskClassifier, ExecutionBlueprint,
     optimize, OptimizeResult,
@@ -149,7 +149,7 @@ print(f"Models: {blueprint.recommended_models}")
 ```python
 from resilience_ai import with_retry
 from observability_ai import track_execution, ExecutionTelemetry
-from genetic_optimizer_ai import optimize
+from optimization import optimize
 
 telemetry = ExecutionTelemetry()
 
@@ -163,7 +163,7 @@ def fitness(temperature: float) -> float:
 ### With consensus-ai
 ```python
 from consensus_ai import with_consensus
-from genetic_optimizer_ai import optimize
+from optimization import optimize
 
 @optimize(bounds={"temperature": (0.0, 2.0)}, generations=20)
 async def consensus_fitness(temperature: float) -> float:

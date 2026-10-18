@@ -13,7 +13,7 @@ import functools
 from dataclasses import dataclass, field
 from typing import Any, Callable
 
-from genetic_optimizer_ai.genetic_optimizer import (
+from optimization.genetic_optimizer import (
     GeneticOptimizer,
     Individual,
     ParamBounds,

@@ -1,4 +1,4 @@
-"""genetic-optimizer-ai -- Genetic algorithm optimizer and task classifier.
+"""optimization -- Genetic algorithm optimizer and task classifier.
 
 A standalone, zero-dependency Python package providing:
 
@@ -12,17 +12,17 @@ Both components rely only on the Python standard library.
 
 from __future__ import annotations
 
-from genetic_optimizer_ai.genetic_optimizer import (
+from optimization.genetic_optimizer import (
     DEFAULT_PARAMS,
     GeneticOptimizer,
     Individual,
     ParamBounds,
 )
-from genetic_optimizer_ai.decorators import (
+from optimization.decorators import (
     OptimizeResult,
     optimize,
 )
-from genetic_optimizer_ai.task_classifier import (
+from optimization.task_classifier import (
     ExecutionBlueprint,
     RuleBasedTaskClassifier,
     TaskClassifier,

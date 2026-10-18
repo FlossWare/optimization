@@ -1,4 +1,4 @@
-"""Tests for the genetic_optimizer_ai package."""
+"""Tests for the optimization package."""
 
 from __future__ import annotations
 
@@ -6,7 +6,7 @@ import math
 
 import pytest
 
-from genetic_optimizer_ai import (
+from optimization import (
     ExecutionBlueprint,
     GeneticOptimizer,
     Individual,

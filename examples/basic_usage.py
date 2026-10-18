@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Basic genetic-optimizer-ai usage example.
+"""Basic optimization usage example.
 
 Demonstrates parameter optimization via genetic algorithm
 and task classification.
 """
-from genetic_optimizer_ai import (
+from optimization import (
     GeneticOptimizer,
     ParamBounds,
     RuleBasedTaskClassifier,
@@ -56,6 +56,6 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    print("genetic-optimizer-ai basic usage example")
+    print("optimization basic usage example")
     print("=" * 45)
     main()

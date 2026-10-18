@@ -3,7 +3,7 @@ requires = ["setuptools>=68.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "genetic-optimizer-ai"
+name = "optimization"
 version = "0.1"
 description = "Reusable genetic and evolutionary optimization algorithms"
 readme = "README.md"
@@ -35,7 +35,7 @@ Issues = "https://github.com/FlossWare/optimization/issues"
 dev = ["pytest>=8.0", "ruff", "mypy", "bandit"]
 
 [tool.setuptools.packages.find]
-include = ["genetic_optimizer_ai*"]
+include = ["optimization*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
