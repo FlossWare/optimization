@@ -17,7 +17,7 @@ No background threads, no import-time side effects, no implicit optimization.
 The `@optimize` decorator provides a convenience layer for GA-based parameter tuning:
 
 ```python
-from genetic_optimizer_ai import optimize
+from optimization import optimize
 
 @optimize(param_bounds={"x": (-5, 5), "y": (-5, 5)}, generations=50)
 def find_minimum(x: float, y: float) -> float:
@@ -58,7 +58,7 @@ hyperparameter tuning of model selection strategies. Typical usage:
   maximize routing quality metrics.
 
 ```python
-from genetic_optimizer_ai import GeneticOptimizer, ParamBounds
+from optimization import GeneticOptimizer, ParamBounds
 
 # Evolve Thompson Sampling hyperparameters
 params = [
