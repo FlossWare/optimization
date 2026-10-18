@@ -27,10 +27,10 @@ jobs:
           pip install ruff
 
       - name: Ruff Check
-        run: ruff check genetic_optimizer_ai/
+        run: ruff check optimization/
 
       - name: Ruff Format Check
-        run: ruff format --check genetic_optimizer_ai/
+        run: ruff format --check optimization/
 
   type-check:
     name: Type Check (MyPy)
@@ -53,7 +53,7 @@ jobs:
           pip install mypy
 
       - name: Run MyPy
-        run: mypy genetic_optimizer_ai/
+        run: mypy optimization/
 
   security:
     name: Security Scan
@@ -75,8 +75,8 @@ jobs:
 
       - name: Run Bandit
         run: |
-          bandit -r genetic_optimizer_ai/ -f json -o bandit-report.json || true
-          bandit -r genetic_optimizer_ai/ -f screen
+          bandit -r optimization/ -f json -o bandit-report.json || true
+          bandit -r optimization/ -f screen
 
       - name: Upload security report
         uses: actions/upload-artifact@v4
@@ -105,11 +105,11 @@ jobs:
           pip install radon xenon
 
       - name: Cyclomatic Complexity
-        run: radon cc genetic_optimizer_ai/ -a -s
+        run: radon cc optimization/ -a -s
 
       - name: Maintainability Index
-        run: radon mi genetic_optimizer_ai/ -s
+        run: radon mi optimization/ -s
 
       - name: Check Complexity Thresholds
         continue-on-error: true
-        run: xenon --max-average B --max-modules B --max-absolute B genetic_optimizer_ai/
+        run: xenon --max-average B --max-modules B --max-absolute B optimization/
