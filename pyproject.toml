@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "optimization"
-version = "0.1"
+version = "0.2"
 description = "Reusable genetic and evolutionary optimization algorithms"
 readme = "README.md"
 license = "MIT"
