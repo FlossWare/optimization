@@ -29,9 +29,7 @@ Optimization must operate within externally enforced security, authorization, sa
 
 ## Scope
 
-**Implementation mismatch to resolve:** the current `optimization` package still exports `RuleBasedTaskClassifier`, `TaskClassifier`, and `ExecutionBlueprint` from `task_classifier.py`. Those symbols can still be imported today, so they must not be described as already removed. They represent legacy task-routing behavior and do not belong in the intended `optimization` boundary. Keep them documented as legacy until a separately reviewed migration removes or relocates them.
-
-New work should focus on reusable optimization algorithms, explicit contracts, reproducible behavior, and tests. Keep runtime-specific orchestration out of this repository.
+The public package contains reusable genetic optimization algorithms and the `optimize` decorator. Task classification and execution-blueprint generation are not part of this repository; callers should use Loom-domain contracts or a separately owned task-classification capability for those concerns.
 
 ## Naming
 
