@@ -5,7 +5,7 @@ A standalone, zero-dependency Python package providing:
 - A genetic algorithm for evolving numeric parameter sets toward a
   caller-supplied fitness objective.
 
-Both components rely only on the Python standard library.
+The package relies only on the Python standard library.
 """
 
 from __future__ import annotations
@@ -17,7 +17,6 @@ from optimization.genetic_optimizer import (
     Individual,
     ParamBounds,
 )
-
 
 __all__ = [
     "DEFAULT_PARAMS",
