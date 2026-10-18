@@ -29,7 +29,7 @@ Optimization must operate within externally enforced security, authorization, sa
 
 ## Scope
 
-The former package also exposed a rule-based task classifier that produced execution blueprints containing model, consensus, timeout, and retry decisions. That abstraction belongs to the superseded agent/task-routing architecture and is not part of the intended FlossWare architecture.
+**Implementation mismatch to resolve:** the current `genetic_optimizer_ai` package still exports `RuleBasedTaskClassifier`, `TaskClassifier`, and `ExecutionBlueprint` from `task_classifier.py`. Those symbols can still be imported today, so they must not be described as already removed. They represent legacy task-routing behavior and do not belong in the intended `optimization` boundary. Keep them documented as legacy until a separately reviewed migration removes or relocates them.
 
 New work should focus on reusable optimization algorithms, explicit contracts, reproducible behavior, and tests. Keep runtime-specific orchestration out of this repository.
 
