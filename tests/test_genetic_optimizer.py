@@ -7,13 +7,10 @@ import math
 import pytest
 
 from optimization import (
-    ExecutionBlueprint,
     GeneticOptimizer,
     Individual,
     OptimizeResult,
     ParamBounds,
-    RuleBasedTaskClassifier,
-    TaskClassifier,
     optimize,
 )
 
