@@ -14,8 +14,8 @@ from __future__ import annotations
 
 import math
 import random
-from dataclasses import dataclass, field
 from collections.abc import Callable
+from dataclasses import dataclass, field
 
 
 @dataclass
@@ -95,7 +95,7 @@ class GeneticOptimizer:
         self.population: list[Individual] = []
         self.generation: int = 0
         self._best: Individual | None = None
-        self._rng = random.Random(seed)  # noqa: S311
+        self._rng = random.Random(seed)  # noqa: S311  # nosec B311
 
     # -- Initialisation --------------------------------------------------
 
