@@ -10,15 +10,12 @@ Both components rely only on the Python standard library.
 
 from __future__ import annotations
 
+from optimization.decorators import OptimizeResult, optimize
 from optimization.genetic_optimizer import (
     DEFAULT_PARAMS,
     GeneticOptimizer,
     Individual,
     ParamBounds,
-)
-from optimization.decorators import (
-    OptimizeResult,
-    optimize,
 )
 __all__ = [
     "DEFAULT_PARAMS",
