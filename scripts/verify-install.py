@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Verify genetic-optimizer-ai installation."""
+"""Verify optimization installation."""
 import sys
 
 
 def main() -> int:
     try:
-        from genetic_optimizer_ai import (
+        from optimization import (
             GeneticOptimizer,
             Individual,
             OptimizeResult,
@@ -14,13 +14,13 @@ def main() -> int:
             optimize,
         )
     except ImportError as e:
-        print(f"FAIL: Cannot import genetic-optimizer-ai: {e}")
-        print("Install: pip install 'git+https://github.com/FlossWare/genetic-optimizer-ai.git'")
+        print(f"FAIL: Cannot import optimization: {e}")
+        print("Install: pip install 'git+https://github.com/FlossWare/optimization.git'")
         return 1
 
-    from genetic_optimizer_ai import __version__
+    from optimization import __version__
 
-    print(f"genetic-optimizer-ai v{__version__} installed successfully.")
+    print(f"optimization v{__version__} installed successfully.")
     print(f"  GeneticOptimizer:      {GeneticOptimizer}")
     print(f"  RuleBasedTaskClassifier: {RuleBasedTaskClassifier}")
     print(f"  Decorators:            @optimize")
