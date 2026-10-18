@@ -11,7 +11,8 @@ from __future__ import annotations
 
 import functools
 from dataclasses import dataclass, field
-from typing import Any, Callable
+from collections.abc import Callable
+from typing import Any
 
 from optimization.genetic_optimizer import (
     GeneticOptimizer,
