@@ -101,9 +101,7 @@ class GeneticOptimizer:
 
     def initialize(self) -> None:
         """Create a random initial population."""
-        self.population = [
-            self._random_individual() for _ in range(self.population_size)
-        ]
+        self.population = [self._random_individual() for _ in range(self.population_size)]
         self.generation = 0
         self._best = None
 
