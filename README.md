@@ -1,33 +1,29 @@
-# genetic-optimizer-ai
+# optimizer
 
-**Reusable genetic/evolutionary optimization for FlossWare.**
+**Reusable genetic and evolutionary optimization for FlossWare.**
 
-This repository provides a standalone genetic algorithm implementation for evolving parameter sets. It is a strategy implementation, not an agent runtime or task router.
+This repository provides a standalone genetic algorithm implementation for evolving parameter sets. It is an optimization implementation, not an agent runtime, task router, or orchestration layer.
 
 ## Boundary
 
 ```text
 OptimizationStrategy contract
-          │
-          ▼
- GeneticOptimizer
-          │
-          ▼
- candidate parameters → fitness → next generation
+          |
+          v
+      optimizer
+          |
+          v
+candidate parameters -> fitness evaluation -> next generation
 ```
 
-The optimizer can be used by Loom or other compatible systems without becoming coupled to Loom, model providers, or a particular execution runtime.
+The optimizer can be used by Loom or other compatible systems without coupling it to Loom, a model provider, or a particular execution runtime.
 
 ## Task classification
 
-The former package also exposed a rule-based task classifier that produced execution blueprints containing model, consensus, timeout, and retry decisions. That abstraction belongs to the superseded agent/task-routing architecture and is no longer part of the intended FlossWare architecture.
+The former package also exposed a rule-based task classifier that produced execution blueprints containing model, consensus, timeout, and retry decisions. That abstraction belongs to the superseded agent/task-routing architecture and is not part of the intended FlossWare architecture.
 
-New work should use Loom Intent, Worker, Arbiter, and Strategy contracts rather than extending `ExecutionBlueprint` or adding another task classifier.
+New work here should focus on reusable optimization algorithms and their contracts. Loom remains responsible for execution semantics; `strategy` owns reusable decision strategies such as Thompson Sampling and epsilon-greedy selection.
 
-## Relationship to Loom
+## Repository naming
 
-Loom owns execution and orchestration. `genetic-optimizer-ai` supplies one reusable optimization implementation. Evaluation supplies fitness/reward signals; Knowledge records validated learnings; model selection is one possible optimization workload.
-
-## License
-
-MIT
+The repository is named `optimizer`. Documentation, package metadata, examples, and links should use that name unless a specific published package name requires otherwise.
