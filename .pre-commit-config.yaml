@@ -27,13 +27,13 @@ repos:
     rev: v1.10.0
     hooks:
       - id: mypy
-        files: ^genetic_optimizer_ai/
+        files: ^optimization/
 
   - repo: https://github.com/PyCQA/bandit
     rev: 1.7.8
     hooks:
       - id: bandit
-        args: [-r, genetic_optimizer_ai/, -c, pyproject.toml]
+        args: [-r, optimization/, -c, pyproject.toml]
         additional_dependencies: ["bandit[toml]"]
 
   - repo: https://github.com/Yelp/detect-secrets
