@@ -35,4 +35,4 @@ New work should focus on reusable optimization algorithms, explicit contracts, r
 
 ## Naming
 
-The repository is named `optimization`. Documentation, package metadata, examples, and links should use that name unless a published package name must remain compatible for a documented reason.
+The repository is named `optimization`; documentation and repository links use that name. The distribution name `genetic-optimizer-ai` and import package `genetic_optimizer_ai` are legacy identifiers retained pending an explicit compatibility/release decision. Do not infer that they have been renamed merely because the repository has.
